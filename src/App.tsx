@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Redirect, Route } from 'react-router-dom'
 import {
   IonApp,
@@ -36,15 +36,36 @@ import './theme/variables.css'
 
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial'
 
+interface pairedList {
+  class: number
+  id: string
+  address: string
+  name: string
+}
+
 const App: React.FC = () => {
-  BluetoothSerial.isEnabled().then(
-    () => {
-      alert('Connected')
-    },
-    () => {
-      alert('not connected')
-    }
-  )
+  useEffect(() => {
+    BluetoothSerial.isEnabled().then(
+      () => {
+        //*List Devices
+
+        // list the available BT ports, https://github.com/don/BluetoothSerial/blob/master/examples/SimpleSerial/www/js/index.js#L35:
+        BluetoothSerial.list().then(
+          (results) => {
+            alert(JSON.stringify(results))
+          },
+          (error) => {
+            alert(JSON.stringify(error))
+          }
+        )
+
+        //**************************************** */
+      },
+      () => {
+        alert('Bluetooth is not enabled.')
+      }
+    )
+  }, [])
 
   return (
     <IonApp>
@@ -63,7 +84,7 @@ const App: React.FC = () => {
           <IonTabBar slot='bottom'>
             <IonTabButton tab='Graphs' href='/graphs'>
               <IonIcon icon={barChart} />
-              <IonLabel>Dashboard</IonLabel>
+              <IonLabel>Dash</IonLabel>
             </IonTabButton>
             <IonTabButton tab='options' href='/options'>
               <IonIcon icon={optionsOutline} />
