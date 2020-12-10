@@ -1,0 +1,8 @@
+{
+  "name": "smarthomecontroller",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react",
+  "id": "2c79d385"
+}
