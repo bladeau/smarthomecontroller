@@ -34,8 +34,6 @@ import '@ionic/react/css/display.css'
 /* Theme variables */
 import './theme/variables.css'
 
-import { BluetoothSerial } from '@ionic-native/bluetooth-serial'
-
 interface pairedList {
   class: number
   id: string
@@ -44,29 +42,6 @@ interface pairedList {
 }
 
 const App: React.FC = () => {
-  useEffect(() => {
-    BluetoothSerial.isEnabled().then(
-      () => {
-        //*List Devices
-
-        // list the available BT ports, https://github.com/don/BluetoothSerial/blob/master/examples/SimpleSerial/www/js/index.js#L35:
-        BluetoothSerial.list().then(
-          (results) => {
-            alert(JSON.stringify(results))
-          },
-          (error) => {
-            alert(JSON.stringify(error))
-          }
-        )
-
-        //**************************************** */
-      },
-      () => {
-        alert('Bluetooth is not enabled.')
-      }
-    )
-  }, [])
-
   return (
     <IonApp>
       <IonReactRouter>
