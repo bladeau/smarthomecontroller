@@ -63,7 +63,7 @@ const App: React.FC = () => {
           <IonTabBar slot='bottom'>
             <IonTabButton tab='Graphs' href='/graphs'>
               <IonIcon icon={barChart} />
-              <IonLabel>Dash</IonLabel>
+              <IonLabel>Dashboard</IonLabel>
             </IonTabButton>
             <IonTabButton tab='options' href='/options'>
               <IonIcon icon={optionsOutline} />
