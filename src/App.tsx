@@ -34,17 +34,17 @@ import '@ionic/react/css/display.css'
 /* Theme variables */
 import './theme/variables.css'
 
-// import { BluetoothSerial } from '@ionic-native/bluetooth-serial/'
+import { BluetoothSerial } from '@ionic-native/bluetooth-serial'
 
 const App: React.FC = () => {
-  // BluetoothSerial.isEnabled().then(
-  //   () => {
-  //     alert('')
-  //   },
-  //   () => {
-  //     alert('(...)')
-  //   }
-  // )
+  BluetoothSerial.isEnabled().then(
+    () => {
+      alert('Connected')
+    },
+    () => {
+      alert('not connected')
+    }
+  )
 
   return (
     <IonApp>
