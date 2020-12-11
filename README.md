@@ -18,14 +18,13 @@ ionic capacitor copy android && cd android && ./gradlew assembleDebug && cd ..
 
 
 
+https://ionicframework.com/docs/cli/commands/capacitor-sync
 
 
-
-
-ionic cap sync    
+ionic capacitor sync android 
 
 Run app with live reload (Android)
 
 
+ionic capacitor run android --livereload --external
 
-ionic cap run android -l --external
