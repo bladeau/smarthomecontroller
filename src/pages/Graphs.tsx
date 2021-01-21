@@ -10,32 +10,26 @@ import {
 import ExploreContainer from '../components/ExploreContainer'
 import './Tab1.css'
 import { BLE } from '@ionic-native/ble'
+import { BluetoothSerial } from '@ionic-native/bluetooth-serial'
 
 const Graphs: React.FC = () => {
-  let devices: string[] = []
-  const [response, setResponse] = useState('')
-  BLE.enable().then(
-    function () {
-      console.log('Bluetooth is enabled')
-    },
-    function () {
-      console.log('Please enable Bluetooth')
-    }
-  )
-  BLE.isEnabled().then(
-    () => alert('Bluetooth is enabled'),
-    () => alert('Bluetooth is not enabled')
-  )
+  BluetoothSerial.isEnabled().then(success => {
+    BluetoothSerial.list().then(response => {
+      if (response.length > 0) {
+        alert(response);
 
-  let scan = () => {
-    BLE.scan([], 60).subscribe((device) => {
-      alert('device')
-      if (device && device.name) {
-        devices = [...devices, device.name]
-        setResponse(devices.reduce((a, b) => a + ', ' + b))
+      } else {
+        alert('BLUETOOTH.NOT_DEVICES_FOUND');
       }
-    })
-  }
+    }).catch((error) => {
+      console.log("[bluetooth.service-41] Error: " + JSON.stringify(error));
+      alert('BLUETOOTH.NOT_AVAILABLE_IN_THIS_DEVICE');
+    });
+  }, fail => {
+    console.log("[bluetooth.service-45] Error: " + JSON.stringify(fail));
+    alert('BLUETOOTH.NOT_AVAILABLE');
+  });
+});
 
   return (
     <IonPage>
